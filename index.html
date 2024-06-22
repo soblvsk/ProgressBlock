@@ -12,8 +12,16 @@
   </head>
   <body id="app">
     <main>
-      <progress-component title="Progress" value="60"></progress-component>
+      <div class="progress-block">
+        <h4 class="progress-block__title">Progress</h4>
+
+        <div class="progress-block__content">
+          <progress-component value="60"></progress-component>
+          <progress-panel-component></progress-panel-component>
+        </div>
+      </div>
     </main>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

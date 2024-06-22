@@ -52,3 +52,36 @@ input {
   border: none;
   margin: 0;
 }
+
+.progress-block {
+  display: flex;
+  flex-direction: column;
+  width: 568px;
+  height: 320px;
+  background-color: var(--color-white);
+  padding: 20px;
+}
+
+.progress-block__title {
+  margin: 0;
+  font-weight: 400;
+}
+
+.progress-block__content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 569px) {
+  .progress-block {
+    width: 320px;
+    height: 568px;
+  }
+
+  .progress-block__content {
+    grid-template-columns: 1fr;
+  }
+}
