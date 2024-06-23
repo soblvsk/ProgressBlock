@@ -9,14 +9,14 @@ class InputElement extends HTMLElement {
     return ['id', 'type', 'label'];
   }
 
+  connectedCallback() {
+    this.render();
+  }
+
   attributeChangedCallback(_attrName: string, oldValue: string | null, newValue: string | null) {
     if (oldValue !== newValue) {
       this.render();
     }
-  }
-
-  connectedCallback() {
-    this.render();
   }
 
   render() {

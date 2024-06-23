@@ -28,10 +28,6 @@
   transform-origin: center;
 }
 
-.loader__progress_start {
-  animation-play-state: running;
-}
-
 @keyframes rotate {
   100% {
     transform: rotate(360deg);

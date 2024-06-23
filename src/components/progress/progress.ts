@@ -48,24 +48,28 @@ class ProgressElement extends HTMLElement {
     this.updateVisibility(svgCircle);
   }
 
-  updateProgressCircle(progressCircle: SVGCircleElement) {
-    const radius = progressCircle.r.baseVal.value;
+  updateProgressCircle(element: SVGCircleElement) {
+    const radius = element.r.baseVal.value;
     const circumference = 2 * Math.PI * radius;
     const offset = (circumference * this.#value) / 100;
 
-    progressCircle.style.strokeDasharray = `${offset} ${circumference}`;
+    element.style.setProperty('stroke-dasharray', `${offset} ${circumference}`);
   }
 
-  updateAnimation(progressCircle: SVGCircleElement) {
-    if (this.#animated) {
-      progressCircle.classList.add(classes.loader__progress_start);
+  updateAnimation(element: SVGCircleElement) {
+    this.setStyle(element, 'animation-play-state', this.#animated ? 'running' : null);
+  }
+
+  updateVisibility(element: SVGElement) {
+    this.setStyle(element, 'opacity', this.#hide ? '0' : null);
+  }
+
+  setStyle(element: Element & { style: CSSStyleDeclaration }, styleName: string, value: string | null) {
+    if (value !== null) {
+      element.style.setProperty(styleName, value);
     } else {
-      progressCircle.classList.remove(classes.loader__progress_start);
+      element.style.removeProperty(styleName);
     }
-  }
-
-  updateVisibility(svgCircle: SVGElement) {
-    svgCircle.style.opacity = this.#hide ? '0' : '1';
   }
 
   render() {
@@ -76,8 +80,7 @@ class ProgressElement extends HTMLElement {
         <circle class="${classes.loader__circle}" cx="60" cy="60" r="55" />
         <circle class="${classes.loader__progress}" cx="60" cy="60" r="55" />
       </svg>
-    </div>
-  `;
+    `;
   }
 }
 
